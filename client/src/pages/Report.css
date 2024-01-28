@@ -1,0 +1,71 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/*@keyframes slideAndResize {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  100% {
+    transform: translateX(-50%) scaleX(2);
+  }
+}*/
+@keyframes colorChange {
+  0% { color: red; }
+  50% { color: yellow; }
+  100% { color: blue; }
+}
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes rotateAndScale {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.5); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.slideAndResize {
+  animation: slideAndResize 5s infinite;
+}
+.form-element {
+  font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+}
+/*.form-element {
+  animation: spin 5s linear infinite, 
+              colorChange 5s linear infinite, 
+              flash 1s linear infinite, 
+              jump 0.5s linear infinite, 
+              rotateAndScale 3s linear infinite;
+              
+}*/
+.background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  background-image: url('../893011\ \(1\).jpg');
+}

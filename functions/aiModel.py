@@ -3,6 +3,7 @@ from transformers import TFAutoModelForSequenceClassification
 from transformers import AutoTokenizer, AutoConfig
 import numpy as np
 import sys
+import json
 import os
 from scipy.special import softmax
 def preprocess(text):
@@ -29,5 +30,5 @@ os.system('cls')
 ranking = np.argsort(scores)
 ranking = ranking[::-1]
 
-scores_str = [f"{i+1}) {config.id2label[ranking[i]]} {np.round(float(scores[ranking[i]]), 4)}" for i in range(scores.shape[0])]
-print(', '.join(scores_str))
+scores_dict = {config.id2label[ranking[i]]: np.round(float(scores[ranking[i]]), 4) for i in range(scores.shape[0])}
+print(json.dumps(scores_dict, indent=4))

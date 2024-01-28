@@ -23,6 +23,16 @@ async function createTeacherReport(text, selection, teacherNameText, teacherDesc
     return newTeacherReport;
 }
 
+async function readTeacherReport(teachersName) {
+    const teacherReports = await TeacherReport.find({ teacherNameText: teachersName });
+    return teacherReports;
+}
+
+async function readStudentReport(studentsName) {
+    const stuentReports = await StudentReport.find({ studentNameText: studentsName });
+    return stuentReports;
+}
+
 
 
 
@@ -81,6 +91,53 @@ app.post('/getreport/teacher/endpoint', (req, res) => {
     res.status(200).send('Data received');
 });
 
+
+
+
+
+
+app.get('/pullreport/teacher/:name', async (req, res) => {
+    const name = req.params.name.replace(/_/g, ' ');
+
+    try {
+        console.log('Trying to connect to MongoDB');
+        await connect();
+        console.log('Connected to MongoDB')
+        console.log('Trying to read teacher report')
+        const report = await readTeacherReport(name);
+        console.log('Read teacher report');
+        if (report) {
+            res.status(200).json(report);
+        } else {
+            res.status(404).send('No report found for this teacher');
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error occurred while fetching data');
+    }
+});
+
+
+app.get('/pullreport/student/:name', async (req, res) => {
+    const name = req.params.name.replace(/_/g, ' ');
+
+    try {
+        console.log('Trying to connect to MongoDB');
+        await connect();
+        console.log('Connected to MongoDB')
+        console.log('Trying to read student report')
+        const report = await readStudentReport(name);
+        console.log('Read student report');
+        if (report) {   
+            res.status(200).json(report);
+        } else {
+            res.status(404).send('No report found for this teacher');
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error occurred while fetching data');
+    }
+});
 
 
 

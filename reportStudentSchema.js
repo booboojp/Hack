@@ -6,6 +6,6 @@ const StudentReportSchema = new mongoose.Schema({
     studentNameText: { type: String, default: 'null' },
     studentDescriptionText: { type: String, default: 'null' },
     studentSaidText: { type: String, default: 'null' },
-    rating: { type: String, default: 'null' },
+    rating: { type: mongoose.Schema.Types.Mixed, default: {} },
 });
 module.exports = StudentReportSchema
