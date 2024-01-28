@@ -28,8 +28,6 @@ scores = softmax(scores)
 os.system('cls')
 ranking = np.argsort(scores)
 ranking = ranking[::-1]
-print(f"Prompt: {pretext}")
-for i in range(scores.shape[0]):
-    l = config.id2label[ranking[i]]
-    s = scores[ranking[i]]
-    print(f"{i+1}) {l} {np.round(float(s), 4)}")
+
+scores_str = [f"{i+1}) {config.id2label[ranking[i]]} {np.round(float(scores[ranking[i]]), 4)}" for i in range(scores.shape[0])]
+print(', '.join(scores_str))
